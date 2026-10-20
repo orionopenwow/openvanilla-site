@@ -3881,6 +3881,7 @@
     /* ===== Trailer (TRAILER_URL in links.txt) ===== */
     #owTrailer .video-showcase-header { outline: none; }
     #owTrailer[hidden] { display: none !important; }
+    [data-stat][hidden], [data-stats][hidden], #owLive[hidden] { display: none !important; }
     .ow-trailer-poster { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; display: grid;
       place-items: center; background: #05070b url('assets/hero_bg.webp') center 70% / cover no-repeat; color: #fff; }
     .ow-trailer-poster::before { content: ''; position: absolute; inset: 0;
@@ -3937,6 +3938,7 @@
       background: linear-gradient(180deg, #141a26, #0b0f17); border: 1px solid #5e431a; box-shadow: inset 0 0 0 1px #966f2c, 0 12px 34px rgba(0,0,0,.7);
       padding: .95rem 1rem .85rem; font-size: .8rem; color: #cbd5e1; line-height: 1.5; animation: owNudgeIn .45s ease both; }
     #owNudge.show { display: block; }
+    #owNudge.fading { opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; pointer-events: none; }
     #owNudge b { color: var(--gold-bright); font-family: var(--font-display); font-size: .92rem; display: block; margin-bottom: .2rem; }
     #owNudge .row { display: flex; gap: .5rem; margin-top: .65rem; }
     #owNudge .row button { flex: 1; font-size: .74rem; padding: .45rem .5rem; }
@@ -4356,15 +4358,15 @@
                 <svg style="width:16px; height:16px; fill:var(--gold-bright);" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
                 DISCORD COMMUNITY
               </span>
-              <span class="donor-badge-chip ow-live off" id="owLive">● CONNECTING</span>
+              <span class="donor-badge-chip ow-live off" id="owLive" hidden>● LIVE</span>
             </div>
             <div class="wow-panel-body">
-              <div class="owh-crowd">
+              <div class="owh-crowd" data-stat="owStatMembers" hidden>
                 <div class="owh-avs" id="owAvs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
                 <div class="owh-count">
                   <b id="owStatMembers">—</b>
                   <span>members in the Open Vanilla Discord</span>
-                  <em class="owh-on"><i></i><span id="owStatOnline">—</span> online now</em>
+                  <em class="owh-on" data-stat="owStatOnline" hidden><i></i><span id="owStatOnline">—</span> online now</em>
                 </div>
               </div>
               <div class="owh-grid">
@@ -4378,10 +4380,10 @@
                   </ol>
                 </div>
                 <div class="owh-live">
-                  <div class="ow-stats">
-                    <div><b id="owStatAdv">—</b><span>Adventurers</span></div>
-                    <div><b id="owStatWeek">—</b><span>This week</span></div>
-                    <div><b id="owStatToday">—</b><span>Today</span></div>
+                  <div class="ow-stats" data-stats hidden>
+                    <div data-stat="owStatAdv" hidden><b id="owStatAdv">—</b><span>Adventurers</span></div>
+                    <div data-stat="owStatWeek" hidden><b id="owStatWeek">—</b><span>This week</span></div>
+                    <div data-stat="owStatToday" hidden><b id="owStatToday">—</b><span>Today</span></div>
                   </div>
                   <div class="ow-factions" id="owFactions" hidden>
                     <span class="a">Alliance <span id="owA">0</span></span>
@@ -4411,7 +4413,7 @@
                 <span class="ow-trailer-inner">
                   <img src="assets/openvanilla_logo_hero.webp" alt="" loading="lazy" decoding="async">
                   <span class="ow-trailer-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-                  <span class="ow-trailer-label" id="owTrailerLabel">Trailer coming soon</span>
+                  <span class="ow-trailer-label" id="owTrailerLabel">Watch the trailer</span>
                 </span>
               </button>
             </div>
@@ -4438,7 +4440,7 @@
               <li>MySQL</li><li>realmd</li><li>mangosd</li><li>Website &amp; Server Studio</li>
             </ul>
             <div class="server-showcase-actions">
-              <a class="openvanilla-server-download-link btn-server-launch" href="downloads/OpenVanilla-Server.zip" download="OpenVanilla-Server.zip" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+              <a class="openvanilla-server-download-link btn-server-launch" href="https://github.com/orionopenwow/OpenVanilla/releases/latest/download/OpenVanilla-Server.zip" download="OpenVanilla-Server.zip" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
                 <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
                 Download Open Vanilla Server
               </a>
@@ -5057,29 +5059,25 @@
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 14px; margin-bottom: 1.4rem;">
-        <!-- Card 1: Vanilla Client v1.3 -->
+        <!-- Card 1: Vanilla Data (Open Vanilla's own, rewritten and open-sourced). The button's address is
+             VANILLA_DATA_URL in downloads/links.txt; while that line is empty the button reads "Coming soon". -->
         <div style="background: rgba(14, 20, 32, 0.8); border: 1px solid var(--gold-border); padding: 1.1rem; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <span style="font-size: 0.72rem; font-weight: 700; color: var(--gold-bright); text-transform: uppercase;">Vanilla Client v1.3</span>
-              <span style="font-size: 0.68rem; color: #86efac; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.4); padding: 1px 6px; border-radius: 3px;">RECOMMENDED</span>
+              <span style="font-size: 0.72rem; font-weight: 700; color: var(--gold-bright); text-transform: uppercase;">Vanilla Data</span>
+              <span style="font-size: 0.68rem; color: #86efac; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.4); padding: 1px 6px; border-radius: 3px;">OPEN SOURCE</span>
             </div>
-            <h3 style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 6px; font-family: var(--font-display);">Vanilla Client v1.3</h3>
-            <!-- CLIENT_DOWNLOADS switch (links.txt): data-client-mode="temp" shows during the Alpha, "packed" once the client zips are packed back in. -->
-            <p data-client-mode="temp" style="font-size: 0.77rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 0.8rem;">
-              Get Vanilla Client v1.3, the classic English (enUS) client, build 5875, from the Internet Archive. Extract it anywhere, then point the launcher at the folder. Open Vanilla reads its game data and never changes it. <a href="clients.html#vanilla" style="color: var(--gold-bright);">Setup guide</a>
-            </p>
-            <p data-client-mode="packed" hidden style="font-size: 0.77rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 0.8rem;">
-              Full clean English (enUS) Build 5875 game client. Provides authentic MPQ data required to run the Open Vanilla high-performance engine or play on original Vanilla realms.
+            <h3 style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 6px; font-family: var(--font-display);">Vanilla Data</h3>
+            <p style="font-size: 0.77rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 0.8rem;">
+              Open Vanilla's own game data, made by the community and free to share. No Blizzard files.
             </p>
           </div>
           <div>
-            <div data-client-mode="temp" style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px;">Internet Archive • Build 5875</div>
-            <div data-client-mode="packed" hidden style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px;">Includes Data/ MPQs • Zero Blizzard telemetry</div>
-            <a id="btnDownload112" href="https://archive.org/details/nostalrius-wow-classic" target="_blank" rel="noopener noreferrer" class="btn-gold-ornate" style="text-decoration: none; width: 100%; justify-content: center; font-size: 0.78rem; padding: 0.55rem 0.8rem;">
+            <a id="btnVanillaData" href="#" aria-disabled="true" target="_blank" rel="noopener noreferrer" class="btn-gold-ornate" style="text-decoration: none; width: 100%; justify-content: center; font-size: 0.78rem; padding: 0.55rem 0.8rem; opacity: 0.6; pointer-events: none;">
               <svg style="width: 14px; height: 14px; fill: currentColor;" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-              <span data-client-mode="temp">Get Vanilla Client v1.3</span><span data-client-mode="packed" hidden>Download Vanilla Client v1.3 (.zip)</span>
+              <span class="vd-label">Get Vanilla Data: coming soon</span>
             </a>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 8px; text-align: center;">Rewritten and open-sourced</div>
           </div>
         </div>
 
@@ -5131,7 +5129,7 @@
         <svg style="width: 20px; height: 20px; fill: var(--gold-bright); flex-shrink: 0; margin-top: 2px;" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
         <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.45;">
           <strong style="color: var(--gold-bright);">Notepad-Editable Mirror Configuration (<code>links.txt</code>):</strong><br>
-          All client and server download URLs shown here are managed via <code>links.txt</code> in the project directory. Open <code>links.txt</code> with Windows Notepad and change the <code>CLIENT_112_URL_*</code> lines to move the Get Classic link. The site and desktop launcher adopt the change without any recompile.
+          Every download address shown here comes from <code>links.txt</code> in the project directory. Open it with Windows Notepad and set the <code>VANILLA_DATA_URL</code> line to point <strong>Get Vanilla Data</strong> at your data. The site picks up the change without a rebuild.
         </div>
       </div>
 
@@ -5243,67 +5241,6 @@
   <div id="wowToast" style="position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: #0c121d; border: 1px solid var(--gold-border-bright); border-radius: 0; padding: 0.8rem 1.6rem; color: #ffe68a; font-weight: 700; font-size: 0.86rem; box-shadow: 0 4px 25px rgba(0,0,0,0.9), 0 0 15px rgba(240,192,88,0.3); z-index: 2000; opacity: 0; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none; display: flex; align-items: center; gap: 8px;">
     <span id="toastIcon"></span>
     <span id="toastMsg">Action completed!</span>
-  </div>
-
-  <!-- New Thread Modal Dialog -->
-  <div class="modal-overlay" id="newThreadModal">
-    <div class="modal-box" style="width: 580px;">
-      <button class="modal-close" onclick="closeNewThreadModal()">&times;</button>
-      <div style="margin-bottom: 1.2rem;">
-        <h3 style="font-family: var(--font-display); color: var(--gold-bright); font-size: 1.25rem; margin-bottom: 4px;">CREATE NEW FORUM DISCUSSION</h3>
-        <p style="font-size: 0.8rem; color: var(--text-muted);">Share guides, feedback, proposals, or ask for guidance.</p>
-      </div>
-
-      <div style="margin-bottom: 0.9rem;">
-        <label style="display: block; font-size: 0.74rem; font-weight: 700; color: var(--gold-dim); margin-bottom: 4px; text-transform: uppercase;">SELECT CATEGORY</label>
-        <select id="threadCategory" style="width: 100%; padding: 0.6rem; background: #070a10; border: 1px solid var(--gold-border); border-radius: 0; color: #fff; font-family: var(--font-body); font-size: 0.84rem;">
-          <option value="General">General Discussion</option>
-          <option value="Tavern">New Player Tavern</option>
-          <option value="Pvp">PvP &amp; Raiding</option>
-          <option value="Mods">Modding &amp; Interface</option>
-        </select>
-      </div>
-
-      <div style="margin-bottom: 0.9rem;">
-        <label style="display: block; font-size: 0.74rem; font-weight: 700; color: var(--gold-dim); margin-bottom: 4px; text-transform: uppercase;">THREAD TITLE</label>
-        <input type="text" id="threadTitleInput" placeholder="Enter descriptive topic title..." style="width: 100%; padding: 0.6rem; background: #070a10; border: 1px solid var(--gold-border); border-radius: 0; color: #fff; font-family: var(--font-body); font-size: 0.84rem;">
-      </div>
-
-      <div style="margin-bottom: 1.3rem;">
-        <label style="display: block; font-size: 0.74rem; font-weight: 700; color: var(--gold-dim); margin-bottom: 4px; text-transform: uppercase;">MESSAGE CONTENT</label>
-        <textarea id="threadContentInput" rows="4" placeholder="Write your post details here..." style="width: 100%; padding: 0.6rem; background: #070a10; border: 1px solid var(--gold-border); border-radius: 0; color: #fff; font-family: var(--font-body); font-size: 0.84rem; resize: vertical;"></textarea>
-      </div>
-
-      <div style="display: flex; justify-content: flex-end; gap: 10px;">
-        <button class="btn-hollow" onclick="closeNewThreadModal()">Cancel</button>
-        <button class="btn-gold-ornate" onclick="submitNewThread()">Publish Thread</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Thread Viewer Modal Dialog -->
-  <div class="modal-overlay" id="threadViewerModal">
-    <div class="modal-box" style="width: 680px; max-width: 95%;">
-      <button class="modal-close" onclick="closeThreadViewer()">&times;</button>
-      
-      <div style="border-bottom: 1px solid rgba(212, 167, 66, 0.3); padding-bottom: 0.8rem; margin-bottom: 1.2rem;">
-        <div style="font-size: 0.74rem; color: var(--gold-dim); text-transform: uppercase; font-weight: 700; margin-bottom: 3px;" id="threadViewCategory">FORUM DISCUSSION</div>
-        <h2 style="font-family: var(--font-display); color: var(--gold-bright); font-size: 1.25rem;" id="threadViewTitle">Thread Title</h2>
-      </div>
-
-      <div id="threadViewConversation" style="display: flex; flex-direction: column; gap: 1.2rem; max-height: 380px; overflow-y: auto; padding-right: 8px; margin-bottom: 1.4rem;">
-        <!-- Injected dynamically -->
-      </div>
-
-      <!-- Quick Reply Form -->
-      <div style="background: rgba(14, 18, 28, 0.8); border: 1px solid rgba(212, 167, 66, 0.3); border-radius: 0; padding: 0.9rem;">
-        <label style="display: block; font-size: 0.72rem; font-weight: 700; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 4px;">POST QUICK REPLY</label>
-        <textarea id="threadReplyInput" rows="2" placeholder="Write your response to this thread..." style="width: 100%; padding: 0.5rem; background: #070a10; border: 1px solid var(--gold-border); border-radius: 0; color: #fff; font-family: var(--font-body); font-size: 0.82rem; resize: vertical; margin-bottom: 8px;"></textarea>
-        <div style="display: flex; justify-content: flex-end;">
-          <button class="btn-hollow" style="font-size: 0.75rem; padding: 0.35rem 0.9rem;" onclick="postThreadReply()">Submit Reply</button>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- News Detail Modal -->
@@ -5423,6 +5360,7 @@
           <a class="btn-hollow server-guide-btn" href="solo.html" style="text-decoration: none;">Play Solo</a>
           <a class="btn-hollow server-guide-btn" href="forge.html" style="text-decoration: none;">Vanilla Forge</a>
           <a class="btn-hollow server-guide-btn" href="agents.html" style="text-decoration: none;">Vanilla Agents</a>
+          <a class="btn-hollow server-guide-btn" href="browser.html" style="text-decoration: none;">Everything in your browser</a>
           <a class="btn-hollow server-guide-btn" href="manual/index.html" style="text-decoration: none;">Manual</a>
         </div>
       </div>
@@ -5738,6 +5676,62 @@
       </div>
     </div>
     <p class="hb-note">Herald's own characters are always marked as bots in game. He never counts in PvP rankings, the auction house economy or achievements, and a realm can turn him off at any time.</p>
+  </section>
+
+  <section class="content-panel hb-herald pr-forge" id="forge" aria-labelledby="pfTitle" style="max-width: 1200px; margin: 2rem auto; padding: 2rem; background: rgba(12, 17, 26, 0.94); border: 1px solid var(--border-edge); border-radius: 6px;">
+    <style>
+      .pr-forge .hb-art, .pr-agents .hb-art { aspect-ratio: auto; }
+      .pr-forge .hb-art img, .pr-agents .hb-art img { height: auto; }
+      .pr-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 0.6rem; }
+      .pr-btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.92rem;
+        color: #1a1206; background: linear-gradient(180deg, #f5c84c, #c8902a); border: 1px solid #f3d27a; }
+      .pr-btn:hover { filter: brightness(1.07); }
+      .pr-btn.soon { color: var(--gold-dim); background: transparent; border: 1px dashed var(--gold-border); cursor: default; }
+      .pr-more { color: var(--gold-bright); text-decoration: none; border-bottom: 1px solid var(--gold-border); font-size: 0.92rem; }
+    </style>
+    <div class="hb-top">
+      <div>
+        <div class="hb-kicker">The Open Vanilla creator app</div>
+        <h2 id="pfTitle">Vanilla Forge</h2>
+        <p class="hb-lead">Shape the world, bring your own models, write creatures, quests, items and addons, walk them in game in one click, and publish them as a pack a realm can install. One app instead of a shelf of modding tools, working from the game client you already have, and testing in a copy of it so your game is never changed.</p>
+        <div class="pr-actions">
+          <span class="pr-btn soon" aria-disabled="true">Coming soon</span>
+          <a class="pr-more" href="forge.html">See what Forge can do &rsaquo;</a>
+        </div>
+      </div>
+      <div class="hb-art"><img src="assets/forge/forge_hero.webp" alt="Vanilla Forge in 3D: the game's own ground, trees and a tower on Ember Isle, with the map, the tile's textures and the place tools around it" loading="lazy" width="1200" height="750" onerror="this.parentNode.classList.add('empty')"></div>
+    </div>
+    <div class="hb-grid">
+      <div class="hb-card"><h3>The world <span class="hb-tag">Coming</span></h3><p>Raise hills, dig valleys, paint the ground with the game's own textures, pour lakes and rivers, set the sky, and place trees, buildings, creatures and portals, in 2D or 3D.</p></div>
+      <div class="hb-card"><h3>Your own models <span class="hb-tag">Coming</span></h3><p>A .glb from Blender becomes a creature, a mount with its summon spell, or a prop you can stand on, shown animated the way the game will show it.</p></div>
+      <div class="hb-card"><h3>Creatures, quests, items <span class="hb-tag">Coming</span></h3><p>Short forms instead of database tables, fights planned as cards, dialogue with choices and patrol paths drawn on the map. Forge writes the server's tables for you.</p></div>
+      <div class="hb-card"><h3>Test in game <span class="hb-tag">Coming</span></h3><p>One button builds your pack, starts a test realm and puts you where you were looking. Change something while you play and apply it without restarting.</p></div>
+      <div class="hb-card"><h3>Addons <span class="hb-tag">Coming</span></h3><p>A code editor that catches what the 1.12 client can't run, and a pretend client to try your addon in before you start the game.</p></div>
+      <div class="hb-card"><h3>Publish a pack <span class="hb-tag">Coming</span></h3><p>Share what you made on the Workshop as a pack any realm can install. Nothing from Blizzard is ever inside it.</p></div>
+    </div>
+  </section>
+
+  <section class="content-panel hb-herald pr-agents" id="agents" aria-labelledby="paTitle" style="max-width: 1200px; margin: 2rem auto; padding: 2rem; background: rgba(12, 17, 26, 0.94); border: 1px solid var(--border-edge); border-radius: 6px;">
+    <div class="hb-top">
+      <div>
+        <div class="hb-kicker">Your Claude Code helpers, as heroes</div>
+        <h2 id="paTitle">Vanilla Agents</h2>
+        <p class="hb-lead">Every Claude Code session walks into a vanilla inn as a helper, sits at a table and opens a laptop that fills with what it is doing. You roam the inn as your own character, approve their quests, and a checker they can't edit runs your real tests before anything counts as done.</p>
+        <div class="pr-actions">
+          <a class="pr-btn" href="agents.html">Get Vanilla Agents</a>
+          <a class="pr-more" href="agents.html#download">How to set it up &rsaquo;</a>
+        </div>
+      </div>
+      <div class="hb-art"><img src="assets/agents/agents.gif" alt="Vanilla Agents at work: helpers at their laptops in the inn, the quest log, raid frames, chat and the action bar" loading="lazy" width="800" height="450" onerror="this.parentNode.classList.add('empty')"></div>
+    </div>
+    <div class="hb-grid">
+      <div class="hb-card"><h3>Quests you approve <span class="hb-tag live">Live</span></h3><p>Work shows up as quests in a quest log. Nothing goes ahead until you approve it; small, low-risk jobs can start by themselves.</p></div>
+      <div class="hb-card"><h3>A checker that can't be fooled <span class="hb-tag live">Live</span></h3><p>A quest is only done when your project's real tests pass. Sent back? The quest log shows why, with the evidence.</p></div>
+      <div class="hb-card"><h3>Who needs you, at a glance <span class="hb-tag live">Live</span></h3><p>A gold "!" over a helper waiting for you, a pulsing raid frame, a sound and a desktop notice when the window is in the background.</p></div>
+      <div class="hb-card"><h3>Play together <span class="hb-tag live">Live</span></h3><p>Host a party and send one link: friends' helpers walk into your inn, you agree on one plan and split it, and everyone approves their own part.</p></div>
+      <div class="hb-card"><h3>24 inns, 17 zones <span class="hb-tag live">Live</span></h3><p>Goldshire, Kharanos, Brill, Gadgetzan and more, each with its own light, music and loading screen, all from your own game files.</p></div>
+      <div class="hb-card"><h3>Try it first <span class="hb-tag live">Live</span></h3><p>The demo fills the inn with six pretend helpers and a barmaid, so you can look around before connecting Claude.</p></div>
+    </div>
   </section>
 
 <!-- ORION (the realm's caretaker), STARFALL GIVING (hidden) and THE ORION NETWORK (hidden proposal).
@@ -6084,92 +6078,37 @@
     <div class="og-cta"><small>This is a proposal, not a promise. Tell us what you think in <b style="color: var(--gold-primary);">#orion-network</b> on Discord.</small></div>
   </section>
 
-  <!-- UPCOMING DEVELOPMENTS & EXPANSION TIMELINE -->
-  <section class="og-wrap" id="on-the-horizon" aria-labelledby="ogHorizonTitle">
+  <!-- WHAT'S NEXT: Warfront and community realms, folded into one section -->
+  <section class="og-wrap" id="whats-next" aria-labelledby="ogNextTitle">
     <div class="og-head">
-      <div class="og-badge gold" id="wfStatusBadge">SOON™</div> <div class="og-badge blue">Built, launching later</div>
-      <h2 id="ogHorizonTitle">On the Horizon: Warfront</h2>
-      <p>A dedicated PvP realm for players who'd rather fight than level. It runs on its own server, so Vanilla Remastered stays exactly as it is.</p>
+      <div class="og-badge blue">After launch</div>
+      <h2 id="ogNextTitle">What's next</h2>
+      <p>Two things we're building next. Launch news lands in Discord first.</p>
     </div>
-    <div class="og-hero"><img src="assets/pvp/warfront_modes.webp" width="1025" height="476" alt="Warfront's four ways to fight: Instant 60 Arena with a ready-made gear set, World PvP over contested towns, Rated Battlegrounds for 10v10 teams, and Custom Progression with legendary PvP weapons, transmogs and seasonal rewards" width="1200" height="520" loading="lazy"></div>
+    <div class="og-hero"><img src="assets/pvp/warfront_modes.webp" width="1025" height="476" alt="Warfront's four ways to fight: Instant 60 Arena with a ready-made gear set, World PvP over contested towns, Rated Battlegrounds for 10v10 teams, and Custom Progression" loading="lazy" decoding="async"></div>
     <div class="og-two" style="margin-top: 1.6rem;">
       <div class="og-card">
-        <h3>Instant 60 Arena</h3>
-        <p>Skip the levelling and go straight to the fight.</p>
+        <h3>Warfront <span class="og-badge gold" id="wfStatusBadge">SOON&trade;</span></h3>
+        <p>A PvP realm of its own for players who'd rather fight than level. It runs on its own server, so Vanilla Remastered stays exactly as it is.</p>
         <ul>
-          <li>Make a level 60 on the spot</li>
-          <li>Pick a ready-made gear set for your class and role</li>
-          <li>Queue straight into arena matches</li>
+          <li><b>Instant 60 Arena:</b> make a level 60, pick a ready-made gear set, queue straight in</li>
+          <li><b>World PvP:</b> contested towns, zone objectives and bounties</li>
+          <li><b>Rated Battlegrounds:</b> 10v10 teams, ranks and titles</li>
+          <li><b>Its own progression:</b> PvP weapons, transmogs and seasonal reward tracks</li>
         </ul>
+        <p><small><span id="wfStatusNote">It shows in the realm list, marked SOON&trade;.</span> <span id="wfLiveNote" hidden></span></small></p>
       </div>
       <div class="og-card">
-        <h3>World PvP</h3>
-        <p>The open world is the battlefield.</p>
+        <h3>Host a realm from a template <span class="og-badge blue">Planned</span></h3>
+        <p>Pick a template, name your realm and leave the Orion app running. Hosts who sign the Host Agreement show up in everyone's realm list, and nobody on either side sees an IP address.</p>
         <ul>
-          <li>Contested towns that change hands</li>
-          <li>Zone objectives worth holding</li>
-          <li>Bounties on the players everyone's hunting</li>
-          <li>Rewards for holding ground</li>
+          <li><b>Templates:</b> Vanilla Experience, Vanilla Remastered, Speedrun, Arena, Builder, Hardcore, Seasonal, Roleplay, Friends and Guild</li>
+          <li><b>Ranked by reliability:</b> signed uptime receipts, not the host's word</li>
+          <li><b>Safe by design:</b> no IPs and no passwords either way; reports go to Herald and the team</li>
         </ul>
-      </div>
-      <div class="og-card">
-        <h3>Rated Battlegrounds</h3>
-        <p>Lead your team to glory.</p>
-        <ul>
-          <li>10v10 structured competitive play</li>
-          <li>Coordinate on tactical battlegrounds</li>
-          <li>Climb the ranks and earn titles</li>
-          <li>Earn top-tier honour and conquest</li>
-        </ul>
-      </div>
-      <div class="og-card">
-        <h3>Custom Progression</h3>
-        <p>Build your ultimate champion.</p>
-        <ul>
-          <li>Unique legendary PvP weapons</li>
-          <li>Visual transmogs found only on this server</li>
-          <li>Class-altering custom talents</li>
-          <li>Seasonal reward tracks</li>
-        </ul>
+        <p><small>Want to host today? The <a href="host.html" style="color: var(--gold-primary);">setup guide</a> covers running a realm on your own PC.</small></p>
       </div>
     </div>
-    <div class="og-cta"><small><span id="wfStatusNote">Warfront is coming soon: it shows in the realm list, marked SOON™.</span> <span id="wfLiveNote" hidden></span> Launch news lands in Discord first.</small></div>
-  </section>
-
-  <section class="og-wrap" id="community-realms" aria-labelledby="ogRealmsTitle">
-    <div class="og-head">
-      <div class="og-badge gold">Planned</div>
-      <h2 id="ogRealmsTitle">Host a Realm from a Template</h2>
-      <p>Pick a template, name your realm and leave the Orion app running. Every host who signs the Host Agreement shows up in the realm list for everyone, and nobody on either side ever sees an IP address.</p>
-    </div>
-    <div class="og-cards">
-      <div class="og-card"><h3>Vanilla Experience</h3><p>Blizzlike Vanilla at 1x rates. No custom content, just the game as it was.</p></div>
-      <div class="og-card"><h3>Vanilla Remastered</h3><p>Our new spells, dungeons and race and class combos, with the Vanilla Remastered addons built in.</p></div>
-      <div class="og-card"><h3>Speedrun</h3><p>Fresh characters, run timers and leaderboards for the race to 60, dungeon clears and attunements.</p></div>
-      <div class="og-card"><h3>Arena</h3><p>Instant 60, free gear and talent vendors, arenas from 1v1 to 5v5 and open duel zones.</p></div>
-      <div class="og-card"><h3>Builder</h3><p>Creative mode: fly, place props and doodads, and save what you build into the world.</p></div>
-      <div class="og-card"><h3>Hardcore</h3><p>One life. Death locks the character, and its name goes on the realm's memorial wall.</p></div>
-      <div class="og-card"><h3>Seasonal</h3><p>A fresh start for 8 to 12 weeks with a twist, then characters move to an eternal realm.</p></div>
-      <div class="og-card"><h3>Roleplay</h3><p>Persona profiles on by default, RP name rules, events and no pressure to level.</p></div>
-      <div class="og-card"><h3>Friends and Guild</h3><p>Private and invite-only for 2 to 40 players, with dungeons scaled to your group.</p></div>
-    </div>
-    <div class="og-panel">
-      <h3>Listed automatically, safe by design</h3>
-      <p>Community realms run behind the same Orion relays as our own realms. The relays carry game traffic and nothing else.</p>
-      <div class="og-two">
-        <ul class="og-list">
-          <li><b>In the realm list.</b> Every realm whose host signed the Host Agreement appears under a Community tab, with its template, population and uptime.</li>
-          <li><b>Ranked by reliability.</b> Signed uptime receipts, not the host's word, decide who rises to the top.</li>
-          <li><b>Removed fast.</b> Reports go to Herald and the team. A revoked realm drops off every client within minutes.</li>
-        </ul>
-        <ul class="og-list">
-          <li><b>No IPs, either way.</b> Players and hosts only ever talk to relays, so neither sees the other's address.</li>
-          <li><b>No passwords.</b> Hosts never see your password; our login service gives their realm a one-time key.</li>
-          <li><b>No harmful data.</b> Only real game packets and reviewed, signed content files reach your client. Scripts run in the sandbox.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="og-cta"><small>Want to host today? The <a href="host.html" style="color: var(--gold-primary);">setup guide</a> covers running a realm on your own PC. One-click templates arrive with the Orion app.</small></div>
   </section>
 
   <!-- LIVE NOW: Open Vanilla streams (community/streams.json from tools/streams_fetch.py); hidden while nobody is live -->
@@ -6266,7 +6205,7 @@
   <section class="ow-community ow-frame" aria-label="Credits and support">
     <div class="owc-heart" aria-hidden="true">&#10084;&#65039;</div>
     <h4>Created for free by the community</h4>
-    <p>Open Vanilla is free, open source and built by volunteers. It stands on the work of every tester, bug reporter and helper in the <a href="#" class="openvanilla-discord-link" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
+    <p>Open Vanilla is free, open source and built by volunteers. It stands on the work of every tester, bug reporter and helper in the <a href="https://discord.gg/r6nj5p8U4" class="openvanilla-discord-link" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
     <!-- project credits hidden for now: remove hidden and "display: none" to show them again -->
     <div class="owc-credits" hidden style="display: none">
       <a href="https://github.com/Arnesen/wenilla" target="_blank" rel="noopener noreferrer"><b>wenilla</b><span>Arnesen</span></a>
@@ -6322,6 +6261,16 @@
   </div>
 
   <footer style="background: #04060a; border-top: 1px solid var(--border-edge); padding: 3rem 1.5rem 2rem; color: #94a3b8; font-size: 0.78rem;">
+    <!-- Made by Orion (the framed sprite: assets/orion/orion_cookie.webp, .gif for old browsers) -->
+    <div style="max-width: 1200px; margin: -1rem auto 2.4rem; display: flex; flex-direction: column; align-items: center; gap: 0.55rem;">
+      <picture>
+        <source srcset="assets/orion/orion_cookie.webp" type="image/webp">
+        <img src="assets/orion/orion_cookie.gif" width="239" height="162" loading="lazy" decoding="async"
+             alt="Orion, a blue-skinned elf with long silver hair, happily eating a cookie"
+             style="display: block; image-rendering: pixelated; border-radius: 3px; box-shadow: 0 0 0 1px rgba(212,167,66,0.25), 0 10px 30px rgba(0,0,0,0.6), 0 0 26px rgba(212,167,66,0.12);">
+      </picture>
+      <div style="color: var(--gold-dim); font-size: 0.74rem; letter-spacing: 0.04em;">Made by Orion <span aria-label="with love">&#10084;&#65039;</span></div>
+    </div>
     <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
       
       <!-- Column 1: Project Identity & Discord -->
@@ -6375,7 +6324,7 @@
           World of Warcraft, Warcraft, and Blizzard Entertainment are registered trademarks of Blizzard Entertainment, Inc. Open Vanilla is an independent community project and is in no way affiliated with, associated with, or endorsed by Blizzard Entertainment.
         </p>
         <div style="font-family: monospace; font-size: 0.7rem; color: #64748b; background: rgba(0,0,0,0.5); padding: 6px; border: 1px solid var(--border-edge); border-radius: 3px;">
-          Engine: wenilla v0.2.0-wasm<br>
+          Engine: benilla v0.2.0-wasm<br>
           Target: wasm32-unknown-unknown<br>
           Graphics: WebGPU + WGSL Pipelines
         </div>
@@ -6406,16 +6355,6 @@
         <a href="terms.html" style="color: var(--gold-dim); text-decoration: none;">Terms</a>
         <a href="security.html" style="color: var(--gold-dim); text-decoration: none;">Security</a>
       </div>
-    </div>
-    <!-- Made by Orion (the framed sprite: assets/orion/orion_cookie.webp, .gif for old browsers) -->
-    <div style="max-width: 1200px; margin: 1.6rem auto 0; display: flex; flex-direction: column; align-items: center; gap: 0.55rem;">
-      <picture>
-        <source srcset="assets/orion/orion_cookie.webp" type="image/webp">
-        <img src="assets/orion/orion_cookie.gif" width="239" height="162" loading="lazy" decoding="async"
-             alt="Orion, a blue-skinned elf with long silver hair, happily eating a cookie"
-             style="display: block; image-rendering: pixelated; border-radius: 3px; box-shadow: 0 0 0 1px rgba(212,167,66,0.25), 0 10px 30px rgba(0,0,0,0.6), 0 0 26px rgba(212,167,66,0.12);">
-      </picture>
-      <div style="color: var(--gold-dim); font-size: 0.74rem; letter-spacing: 0.04em;">Made by Orion <span aria-label="with love">&#10084;&#65039;</span></div>
     </div>
   </footer>
 
@@ -6500,7 +6439,7 @@
         heroSub: 'DEDICATED CLOUD • PvE',
         type: 'PvE',
         category: ['all', 'classicplus'],
-        players: '--',
+        players: '',
         playersRaw: 0,
         status: 'ONLINE',
         isOnline: true,
@@ -6515,7 +6454,7 @@
         heroSub: 'DEDICATED CLOUD • PvP',
         type: 'PvP',
         category: ['all', 'pvp'],
-        players: '--',
+        players: '',
         playersRaw: 0,
         status: 'SOON™',
         isOnline: false,
@@ -6533,7 +6472,7 @@
         heroSub: 'DEDICATED CLOUD • RP • SOON™',
         type: 'RP',
         category: ['all', 'rp'],
-        players: '--',
+        players: '',
         playersRaw: 0,
         status: 'SOON™',
         isOnline: false,
@@ -6549,7 +6488,7 @@
         heroSub: 'DEDICATED CLOUD • FUN • SOON™',
         type: 'Fun',
         category: ['all'],
-        players: '--',
+        players: '',
         playersRaw: 0,
         status: 'SOON™',
         isOnline: false,
@@ -6565,7 +6504,7 @@
         heroSub: 'COMMUNITY HOSTED • SOON™',
         type: 'Community',
         category: ['all'],
-        players: '--',
+        players: '',
         playersRaw: 0,
         status: 'SOON™',
         isOnline: false,
@@ -7332,10 +7271,8 @@
       DISCORD_INVITE: 'https://discord.gg/r6nj5p8U4',
       GITHUB_REPO: 'https://github.com/orionopenwow/OpenVanilla',
       BUG_REPORTS: 'https://github.com/orionopenwow/OpenVanilla/issues',
-      // Game client buttons: CLIENT_DOWNLOADS = TEMP | PACKED picks the *_TEMP or *_PACKED link.
-      CLIENT_DOWNLOADS: 'TEMP',
-      CLIENT_112_URL_TEMP: 'https://archive.org/details/nostalrius-wow-classic',
-      CLIENT_112_URL_PACKED: 'https://openvanilla.app/downloads/WoW-1.12.1-EnUS-Client.zip',
+      // Get Vanilla Data: Open Vanilla's own data (empty until links.txt sets VANILLA_DATA_URL)
+      VANILLA_DATA_URL: '',
       OPENVANILLA_CLIENT_URL: 'https://github.com/orionopenwow/OpenVanilla/releases/latest'
     };
 
@@ -7372,25 +7309,7 @@
         });
     }
 
-    // CLIENT_DOWNLOADS = TEMP | PACKED (links.txt) -> CLIENT_112_URL, and the
-    // matching card copy (elements tagged data-client-mode="temp" / "packed").
-    function resolveClientLinks() {
-      var mode = String(openvanillaLinks.CLIENT_DOWNLOADS || '').trim().toUpperCase();
-      if (mode !== 'TEMP' && mode !== 'PACKED') mode = openvanillaLinks.CLIENT_112_URL ? '' : 'TEMP';
-      if (mode) {
-        ['112'].forEach(function(v) {
-          var url = openvanillaLinks['CLIENT_' + v + '_URL_' + mode];
-          if (url) openvanillaLinks['CLIENT_' + v + '_URL'] = url;
-        });
-      }
-      var shown = mode === 'PACKED' ? 'packed' : 'temp';
-      document.querySelectorAll('[data-client-mode]').forEach(function(el) {
-        el.hidden = el.getAttribute('data-client-mode') !== shown;
-      });
-    }
-
     function applyLinksToPage() {
-      resolveClientLinks();
       // Warfront opens from downloads/links.txt: WARFRONT_OPEN = 1 (and WARFRONT_URL if not the default)
       var wfr = OPENVANILLA_REALMS_LIST.find(function (r) { return r.id === 'pvp60'; });
       if (wfr) {
@@ -7405,8 +7324,13 @@
           if (typeof renderRealmRows === 'function') renderRealmRows();
         }
       }
-      var c112 = document.getElementById('btnDownload112');
-      if (c112 && openvanillaLinks.CLIENT_112_URL) c112.href = openvanillaLinks.CLIENT_112_URL;
+      // Get Vanilla Data: live once links.txt sets VANILLA_DATA_URL (an https:// address)
+      var vd = document.getElementById('btnVanillaData');
+      if (vd && openvanillaLinks.VANILLA_DATA_URL) {
+        vd.href = openvanillaLinks.VANILLA_DATA_URL;
+        vd.removeAttribute('aria-disabled'); vd.style.opacity = ''; vd.style.pointerEvents = '';
+        vd.querySelector('.vd-label').textContent = 'Get Vanilla Data';
+      }
 
 
       var owClients = document.querySelectorAll('.openvanilla-client-download-link');
@@ -7462,7 +7386,15 @@
       var base = String(openvanillaLinks.BACKEND_URL || '').trim();
       return base ? base.replace(/\/?$/, '/') + 'community/feed.json' : '';
     }
-    function owSet(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
+    function owSet(id, v) {
+      var el = document.getElementById(id); if (!el) return;
+      el.textContent = v;
+      // a stat shows only once it has a real number (never a bare dash)
+      var box = document.querySelector('[data-stat="' + id + '"]');
+      if (box) box.hidden = v == null || v === '' || v === '\u2014' || v === '-';
+      var group = document.querySelector('[data-stats]');
+      if (group) group.hidden = !group.querySelector('[data-stat]:not([hidden])');
+    }
     function renderArrivals(d) {
       var st = d.stats || {}, f = d.factions || {}, list = d.recent || [];
       owSet('owStatAdv', (st.adventurers ?? '—').toLocaleString());
@@ -7491,7 +7423,7 @@
         document.getElementById('owBarH').style.width = (100 - pa) + '%';
       }
       var live = document.getElementById('owLive');
-      if (live) { live.textContent = '● LIVE'; live.classList.remove('off'); }
+      if (live) { live.textContent = '● LIVE'; live.classList.remove('off'); live.hidden = false; }
       var ol = document.getElementById('owFeed'), empty = document.getElementById('owEmpty');
       if (empty) empty.hidden = list.length > 0;
       if (ol) ol.innerHTML = list.map(function(p) {
@@ -7516,7 +7448,7 @@
       // the player count still comes from the feed when it has one.
       row.isOnline = true;
       row.status = 'ONLINE';
-      row.players = hasN ? String(n) : '0';
+      row.players = hasN ? String(n) : '';      // no feed number: an empty cell, never a made-up 0
       row.playersRaw = hasN ? n : 0;
       var total = document.getElementById('realmPlayersOnline');
       if (total) total.textContent = hasN && n > 0 ? (n === 1 ? '1 player online' : n + ' players online') : 'Vanilla Remastered is online';
@@ -7535,7 +7467,7 @@
           owSet('owStatMembers', owDiscordLive.m.toLocaleString());
           owSet('owStatOnline', owDiscordLive.p.toLocaleString());
           var live = document.getElementById('owLive');
-          if (live) { live.textContent = '● LIVE'; live.classList.remove('off'); }
+          if (live) { live.textContent = '● LIVE'; live.classList.remove('off'); live.hidden = false; }
           if (j.guild && j.guild.id) loadDiscordFaces(j.guild.id);
         })
         .catch(function() {});
@@ -7572,7 +7504,7 @@
         .then(function(d) { owRealmLive(d); return renderArrivals(d); })
         .catch(function() {
           var live = document.getElementById('owLive');
-          if (live) { live.textContent = '● SOON'; live.classList.add('off'); }
+          if (live && !owDiscordLive) live.hidden = true;     // no feed: no chip, rather than a SOON placeholder
         });
       if (!owFeedTimer) owFeedTimer = setInterval(function() { if (!document.hidden) loadArrivals(); }, 60000);
     }
@@ -7648,7 +7580,7 @@
     var OW_NUDGE_KEY = 'openvanilla_nudge_at';
     function owNudgeClose() {
       var n = document.getElementById('owNudge');
-      if (n) n.classList.remove('show');
+      if (n) n.classList.remove('show', 'fading');
       var p = document.getElementById('owSupportPill');
       if (p) p.style.display = '';
       try { localStorage.setItem(OW_NUDGE_KEY, String(Date.now())); } catch (e) {}
@@ -7663,8 +7595,18 @@
         shown = true;
         var p = document.getElementById('owSupportPill');
         if (p) p.style.display = 'none';
-        document.getElementById('owNudge').classList.add('show');
+        var n = document.getElementById('owNudge');
+        n.classList.add('show');
         try { localStorage.setItem(OW_NUDGE_KEY, String(Date.now())); } catch (e) {}
+        // fades away by itself after 8 s (waits while the mouse is on it)
+        (function fadeLater() {
+          setTimeout(function() {
+            if (!n.classList.contains('show')) return;
+            if (n.matches(':hover')) return fadeLater();
+            n.classList.add('fading');
+            setTimeout(owNudgeClose, 650);
+          }, 8000);
+        })();
       }
       setTimeout(show, 45000);
       window.addEventListener('scroll', function() {
