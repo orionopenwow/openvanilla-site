@@ -3826,6 +3826,11 @@
       text-transform: uppercase; margin-bottom: 0.6rem; display: flex; align-items: center; gap: .6rem; }
     .owh-sub::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(150, 111, 44, .5), transparent); }
     .owh-join svg { fill: #8b95ff !important; }
+    .owh-perks { list-style: none; margin: .7rem 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; font-size: .74rem; color: var(--text-muted); line-height: 1.45; }
+    .owh-perks li { position: relative; padding-left: 12px; }
+    .owh-perks li::before { content: ''; position: absolute; left: 0; top: .5em; width: 5px; height: 5px; background: #8b95ff; transform: rotate(45deg); }
+    .owh-perks b { color: #c3cedc; font-weight: 600; }
+    @media (max-width: 560px) { .owh-perks { grid-template-columns: 1fr; } }
     .owh-live .ow-empty { display: flex; flex-direction: column; align-items: center; gap: 2px;
       border: 1px dashed rgba(150, 111, 44, 0.45); border-radius: 6px; padding: 0.8rem 0.6rem; }
     .owh-live .ow-empty[hidden] { display: none; }
@@ -4173,6 +4178,7 @@
     .realm-status-gem { width: 24px !important; height: 24px !important; flex: 0 0 24px !important; filter: none !important; }
     .realm-status-online { text-shadow: 0 1px 2px #000, 0 0 10px rgba(74, 222, 128, 0.55) !important; }
     .realm-status-soon { color: #f5a540 !important; text-shadow: 0 1px 2px #000, 0 0 8px rgba(245, 150, 50, 0.4) !important; }
+    .realm-status-testing { color: #fbbf24 !important; text-shadow: 0 1px 2px #000, 0 0 8px rgba(251, 191, 36, 0.45) !important; }
     .realm-bottom-status { padding: 8px 4px 2px !important; }
     .realm-bottom-actions { border-top: 1px solid rgba(212, 167, 66, 0.32) !important; box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.9) !important;
       padding-top: 14px !important; margin-top: 8px !important; background: none !important; }
@@ -4371,12 +4377,12 @@
               </div>
               <div class="owh-grid">
                 <div class="owh-about">
-                  <p class="owh-lead">One Discord for the whole realm. It's where your account starts, and Discord's <b>#world</b> and the in-game <b>World</b> channel are bridged both ways, so you can talk with everyone from either side.</p>
+                  <p class="owh-lead">Playing needs no Discord. Join it for the community: Discord's <b>#world</b> and the in-game <b>World</b> channel are bridged both ways, so you can talk with everyone from either side.</p>
                   <div class="owh-sub">How to join</div>
                   <ol class="ow-steps">
-                    <li><span><b>Join the Discord</b> and press <b>Enter the gate</b>.</span></li>
-                    <li><span>Answer the <b>Herald</b>'s question about the rules.</span></li>
-                    <li><span><b>Sign in with Discord</b> on the realm. Your account and your number are yours.</span></li>
+                    <li><span>Press <b>Play now</b>. It's free and runs in your browser.</span></li>
+                    <li><span>Sign in with Google or a password, or play as a guest.</span></li>
+                    <li><span>Save your <b>Hero Key</b>. It signs you in on any device, so your account and your heroes stay yours.</span></li>
                   </ol>
                 </div>
                 <div class="owh-live">
@@ -4396,6 +4402,12 @@
                 <svg style="width:16px; height:16px; fill:currentColor;" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
                 <span>Join the Discord</span>
               </a>
+              <ul class="owh-perks" aria-label="Why join the Discord">
+                <li><b>Talk to the realm</b> from your phone: #world is the in-game World channel.</li>
+                <li><b>First looks</b> at patches, new realms and launch dates.</li>
+                <li><b>Test invites</b> for new realms and modes before they open.</li>
+                <li><b>The help desk</b>: GMs and players answer there.</li>
+              </ul>
             </div>
           </div>
 
@@ -5295,6 +5307,45 @@
     </div>
   </div>
 
+  <!-- Warfront: choose a mode before you go (WARFRONT_OPEN = test or 1 in downloads/links.txt) -->
+  <div class="modal-overlay" id="wfModeModal" onclick="if (event.target === this) closeWarfrontModes()">
+    <div class="modal-box soon-box wf-mode-box" role="dialog" aria-modal="true" aria-labelledby="wfModeTitle">
+      <button class="modal-close" onclick="closeWarfrontModes()" aria-label="Close" style="z-index: 12;">&times;</button>
+      <div class="soon-banner" style="background-image: url('assets/pvp/warfront_banner.webp')">
+        <div class="soon-head">
+          <div class="soon-chips"><span class="soon-chip">PvP</span><span class="soon-chip live" id="wfModeStatus">&#9679; ONLINE</span></div>
+          <h2 id="wfModeTitle">Warfront: how do you want to fight?</h2>
+        </div>
+      </div>
+      <div class="soon-body">
+        <p class="soon-lead">Every character starts at 60 with a mount, bags and gold. Pick where to begin; the Warfront window (<b>/wf</b>) opens on it, and you can switch any time.</p>
+        <div class="wf-modes" id="wfModes"></div>
+        <p class="wf-test-note" id="wfModeTest" hidden>Warfront is in testing. Characters, gear and ratings may be wiped before launch. Found something? The blue bug button in game, or Discord.</p>
+        <p class="soon-fine">Leaving a rated match counts as a loss and locks the queue for 15 minutes.</p>
+      </div>
+    </div>
+  </div>
+  <style>
+    .wf-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: .9rem; }
+    .wf-mode { position: relative; text-align: left; padding: .7rem .8rem .7rem .85rem; border-radius: 6px; cursor: pointer;
+      background: rgba(255,255,255,.03); border: 1px solid rgba(240,192,88,.22); color: #c3cedc; font: inherit; transition: border-color .15s, background .15s, transform .15s; }
+    .wf-mode:hover, .wf-mode:focus-visible { border-color: rgba(240,192,88,.75); background: rgba(240,192,88,.08); transform: translateY(-1px); outline: none; }
+    .wf-mode b { display: block; color: var(--gold-bright); font-size: .92rem; margin-bottom: 2px; }
+    .wf-mode span { display: block; font-size: .76rem; line-height: 1.4; }
+    .wf-mode small { display: block; margin-top: .35rem; font-size: .68rem; color: #8b97a8; }
+    .wf-mode em { position: absolute; top: .55rem; right: .6rem; font-style: normal; font-size: .58rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+      padding: 1px 6px; border-radius: 3px; background: rgba(74,222,128,.12); border: 1px solid rgba(74,222,128,.45); color: #86efac; }
+    .wf-mode.first { grid-column: 1 / -1; border-color: rgba(240,192,88,.5); background: linear-gradient(90deg, rgba(240,192,88,.12), rgba(240,192,88,.02)); }
+    .wf-mode.soon { cursor: default; opacity: .55; transform: none; }
+    .wf-mode.soon:hover { border-color: rgba(240,192,88,.22); background: rgba(255,255,255,.03); }
+    .wf-mode.soon em { background: rgba(245,165,64,.12); border-color: rgba(245,165,64,.45); color: #f5c27a; }
+    .wf-test-note { margin: 0 0 .7rem; padding: .55rem .75rem; font-size: .76rem; line-height: 1.5; color: #fde68a; border-radius: 5px;
+      background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.35); }
+    .wf-test-note[hidden] { display: none; }
+    #wfModeStatus.testing { color: #fbbf24; border-color: rgba(251,191,36,.55); background: rgba(40,28,6,.75); }
+    @media (max-width: 600px) { .wf-modes { grid-template-columns: 1fr; } .wf-mode small { display: none; } }
+  </style>
+
   <!-- Supporter / Patron vault modal removed: payments off for launch -->
 
   <!-- DESKTOP LAUNCHER SHOWCASE SECTION -->
@@ -5346,10 +5397,10 @@
         <h2 class="server-showcase-title" id="launcherShowcaseTitle">Play, mod and team up in one app</h2>
         <p class="server-showcase-lead">
           <strong>The Open Vanilla launcher</strong> is the one program you start. It runs the native Open Vanilla engine on your own game data,
-          signs you in with Discord, installs addons from the Workshop, takes you to any realm, and keeps everything up to date by itself.
+          signs you in once, installs addons from the Workshop, takes you to any realm, and keeps everything up to date by itself.
         </p>
         <ul class="server-stack-chips" aria-label="What the launcher does">
-          <li>Native engine</li><li>Workshop addons</li><li>Discord sign-in</li><li>Self-updating</li>
+          <li>Native engine</li><li>Workshop addons</li><li>One sign-in</li><li>Self-updating</li>
         </ul>
         <div class="server-showcase-actions">
           <a href="https://github.com/orionopenwow/OpenVanilla/releases/latest" target="_blank" rel="noopener noreferrer"
@@ -5402,7 +5453,7 @@
         <ul class="srv-feature-list">
           <li class="server-feature">
             <span class="server-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span>
-            <div><h4>One account, every way to play</h4><p>Sign in with Discord once; your heroes follow you from the launcher to the browser.</p></div>
+            <div><h4>One account, every way to play</h4><p>Sign in once and save your Hero Key; your heroes follow you from the launcher to the browser.</p></div>
           </li>
           <li class="server-feature">
             <span class="server-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg></span>
@@ -6639,10 +6690,53 @@
       ul.style.display = info.points.length ? '' : 'none';
       document.getElementById('soonRealmModal').classList.add('active');
     }
+    // Warfront's modes: key goes to the realm's site as ?mode= and on into the game (realm/www/openvanilla.js
+    // -> WenillaCore:Dispatch("WM") -> the Warfront addon opens that tab with a how-to-start line)
+    const WARFRONT_MODES = [
+      { key: 'arena', title: 'Arena', line: 'Queue from anywhere: 1v1 duel ladder, 2v2 and 3v3, skirmish or rated. Fights in the Ring of Law.', how: '/arena d1, /arena s2, /arena r2', first: true },
+      { key: 'bg', title: 'Battlegrounds', line: 'Warsong Gulch, Arathi Basin and Alterac Valley. Short queues: a full side plays for the other.', how: 'a Battlemaster in your capital' },
+      { key: 'duels', title: 'Duels and bounties', line: 'The Gurubashi Arena is the mall: duels reset you, kill streaks carry a bounty, a chest on the hour.', how: 'Stranglethorn Vale' },
+      { key: 'kits', title: 'Gear up first', line: 'Pick a ready gear kit for your class and role, swap pieces, buy flasks.', how: '/wf kits' },
+      { key: 'world', title: 'Contested towns', line: 'World PvP towns that change hands, and the Gauntlet free-for-all.', soon: true },
+      { key: 'rated', title: 'Rated battlegrounds', line: '10v10 teams with ranks, titles and seasons.', soon: true }
+    ];
+    function openWarfrontModes() {
+      const r = OPENVANILLA_REALMS_LIST.find(x => x.id === 'pvp60');
+      if (!r) return;
+      const box = document.getElementById('wfModes');
+      box.replaceChildren(...WARFRONT_MODES.map(m => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'wf-mode' + (m.first ? ' first' : '') + (m.soon ? ' soon' : '');
+        const t = document.createElement('b'); t.textContent = m.title;
+        const l = document.createElement('span'); l.textContent = m.line;
+        b.append(t, l);
+        if (m.how) { const h = document.createElement('small'); h.textContent = m.how; b.append(h); }
+        if (m.soon) { const e = document.createElement('em'); e.textContent = 'Soon'; b.append(e); b.disabled = true; }
+        else b.addEventListener('click', () => enterWarfront(m.key));
+        return b;
+      }));
+      const st = document.getElementById('wfModeStatus');
+      st.textContent = r.testing ? 'TESTING' : '\u25CF ONLINE';
+      st.classList.toggle('testing', !!r.testing);
+      document.getElementById('wfModeTest').hidden = !r.testing;
+      document.getElementById('wfModeModal').classList.add('active');
+    }
+    function closeWarfrontModes() { document.getElementById('wfModeModal').classList.remove('active'); }
+    function enterWarfront(mode) {
+      const r = OPENVANILLA_REALMS_LIST.find(x => x.id === 'pvp60');
+      if (!r || !r.playUrl) return;
+      const u = new URL(r.playUrl, location.href);
+      u.searchParams.set('mode', mode);
+      closeWarfrontModes();
+      showToast('Launching Warfront...', 'sword');
+      location.href = u.toString();
+    }
+
     function closeSoonRealm() { document.getElementById('soonRealmModal').classList.remove('active'); }
     // Play from the live realm's window: the same path as Enter Realm
     function playFromRealmInfo() { closeSoonRealm(); confirmSelectedRealm(); }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSoonRealm(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSoonRealm(); closeWarfrontModes(); } });
 
     function selectRealmRow(id) {
       const pick = OPENVANILLA_REALMS_LIST.find(x => x.id === id);
@@ -6735,7 +6829,7 @@
         const isSelected = r.id === selectedRealmId;
         const soon = !r.isOnline && r.comingSoon;
         const gemSrc = 'assets/realm_ui/v3/gem_' + (r.isOnline ? 'online' : (soon ? 'soon' : 'offline')) + '.webp';
-        const statusClass = r.isOnline ? 'realm-status-online' : (soon ? 'realm-status-soon' : 'realm-status-offline');
+        const statusClass = r.testing ? 'realm-status-testing' : r.isOnline ? 'realm-status-online' : (soon ? 'realm-status-soon' : 'realm-status-offline');
         const playerLbl = '';
 
         return `
@@ -6777,7 +6871,13 @@
         return;
       }
 
-      // a realm with its own site (Warfront) plays there
+      // Warfront: choose a mode first (the choice opens the matching tab of /wf in game)
+      if (realm.id === 'pvp60' && realm.playUrl) {
+        openWarfrontModes();
+        return;
+      }
+
+      // a realm with its own site plays there
       if (realm.playUrl) {
         showToast('Launching ' + realm.name + '...', 'sword');
         location.href = realm.playUrl;
@@ -7315,7 +7415,17 @@
       var wfr = OPENVANILLA_REALMS_LIST.find(function (r) { return r.id === 'pvp60'; });
       if (wfr) {
         if (openvanillaLinks.WARFRONT_URL) wfr.playUrl = openvanillaLinks.WARFRONT_URL;
-        if (String(openvanillaLinks.WARFRONT_OPEN || '') === '1') {
+        var wfOpen = String(openvanillaLinks.WARFRONT_OPEN || '').trim().toLowerCase();
+        if (wfOpen === 'test') {
+          // testing: in the list and playable, marked TESTING, not announced (characters may be wiped)
+          wfr.comingSoon = false; wfr.offline = false; wfr.isOnline = true; wfr.testing = true; wfr.status = 'TESTING';
+          var wtb = document.getElementById('wfStatusBadge');
+          if (wtb) wtb.textContent = 'Testing';
+          var wtn = document.getElementById('wfStatusNote');
+          if (wtn) wtn.textContent = 'Warfront is in testing: pick it in the realm list to help. Characters may be wiped before launch.';
+          loadWarfrontLive();
+          if (typeof renderRealmRows === 'function') renderRealmRows();
+        } else if (wfOpen === '1') {
           wfr.comingSoon = false; wfr.offline = false; wfr.isOnline = true; wfr.status = 'ONLINE';
           var wfb = document.getElementById('wfStatusBadge');
           if (wfb) { wfb.textContent = '● Online'; wfb.className = 'og-badge gold'; }
