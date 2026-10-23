@@ -31,10 +31,10 @@
  "homepage": "https://openvanilla.app/",
  "files": [
   {
-   "name": "cp-warfront-2163f42921ea.zip",
-   "url": "community/workshop/files/cp-warfront-2163f42921ea.zip",
-   "sha256": "2163f42921ea5f3b096f1ff4f365985a8aa29067939e7a2bc53b6d34eff3ca5e",
-   "size": 17296,
+   "name": "cp-warfront-0170dbc22c8a.zip",
+   "url": "community/workshop/files/cp-warfront-0170dbc22c8a.zip",
+   "sha256": "0170dbc22c8af3ef5d47597ca2b03d10203dd8ec22bd3a6fab66d9be934bbf9e",
+   "size": 17717,
    "folders": [
     "Warfront"
    ]
@@ -48,7 +48,7 @@
  ],
  "scan": {
   "compat": "unknown",
-  "checked": "2026-10-21",
+  "checked": "2026-10-22",
   "findings": [],
   "errors": [
    "lua5.1 is not installed"
@@ -69,8 +69,8 @@
   {
    "version": "1.0.0",
    "date": "2026-10-17",
-   "sha256": "2163f42921ea5f3b096f1ff4f365985a8aa29067939e7a2bc53b6d34eff3ca5e",
-   "size": 17296
+   "sha256": "0170dbc22c8af3ef5d47597ca2b03d10203dd8ec22bd3a6fab66d9be934bbf9e",
+   "size": 17717
   }
  ]
 }

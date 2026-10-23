@@ -29,10 +29,10 @@
  "homepage": "https://openvanilla.app/",
  "files": [
   {
-   "name": "cp-talents-157e04d60ac8.zip",
-   "url": "community/workshop/files/cp-talents-157e04d60ac8.zip",
-   "sha256": "157e04d60ac8a5b831ed2f8527963ad4168901b1eb24758c38e0acebafc7a41f",
-   "size": 15611,
+   "name": "cp-talents-7a8c5077040a.zip",
+   "url": "community/workshop/files/cp-talents-7a8c5077040a.zip",
+   "sha256": "7a8c5077040ac9a6587ba25c1b71e999e654d05c54e435f6edff52de494ead0f",
+   "size": 15774,
    "folders": [
     "Talents"
    ]
@@ -46,7 +46,7 @@
  ],
  "scan": {
   "compat": "unknown",
-  "checked": "2026-10-21",
+  "checked": "2026-10-22",
   "findings": [],
   "errors": [
    "lua5.1 is not installed"
@@ -67,8 +67,8 @@
   {
    "version": "1.15.0",
    "date": "2026-10-15",
-   "sha256": "157e04d60ac8a5b831ed2f8527963ad4168901b1eb24758c38e0acebafc7a41f",
-   "size": 15611
+   "sha256": "7a8c5077040ac9a6587ba25c1b71e999e654d05c54e435f6edff52de494ead0f",
+   "size": 15774
   }
  ]
 }
